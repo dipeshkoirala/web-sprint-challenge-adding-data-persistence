@@ -20,11 +20,35 @@ const Project=require("./model")
 const router=express.Router()
 
 router.route("/")
-.get((req,res)=>{
-res.json("Get endpoint")
+.get(async(req,res,next)=>{
+//model.fn()
+
+try{
+    const project=await Project.getProject()
+    res.json("Get endpoint")
+    res.status(200).json(project)
+}catch(err){
+    next(err)
+
+}
+
 })
-.post((res,req)=>{
+.post((res,req,next)=>{
+
 console.log("Post endpoint")
+
+try{
+(!req.body.name||!req.body.description||!req.body.completed)?
+res.status(400).json({msg:"Please provide project_name,project_description and project_completed data"})
+:
+res.status(201).json("This project is eligible")
+    // const project=await Project.getProject()
+    // res.json("Get endpoint")
+    // res.status(200).json(project)
+}catch(err){
+    next(err)
+
+}
 })
 
 module.exports=router
