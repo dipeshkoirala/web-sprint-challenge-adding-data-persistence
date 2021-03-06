@@ -38,13 +38,13 @@ try{
 console.log("Post endpoint")
 
 try{
-(!req.body.name||!req.body.description||!req.body.completed)?
+(!req.body.project_name||!req.body.project_description||!req.body.project_completed)?
 res.status(400).json({msg:"Please provide project_name,project_description and project_completed data"})
 :
-res.status(201).json("This project is eligible")
-    // const project=await Project.getProject()
-    // res.json("Get endpoint")
-    // res.status(200).json(project)
+res.status(200).json("This project is eligible")
+const newProject=Project.insert(req.body)
+res.status(201).json(newProject)
+    
 }catch(err){
     next(err)
 

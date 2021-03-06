@@ -22,8 +22,21 @@ function getProject(){
     
 }
 
+const insert = ({ project_name, project_description, project_completed }) => { 
+
+    // INSERT INTO projects (project_name, project_description, project_completed) VALUES ('foo', 'bar',true); 
+    
+    const newUser = {  project_name, project_description, project_completed } 
+    
+    db("projects").push(newUser) 
+    
+    Promise.resolve(newUser) 
+    
+    } 
+
 
 module.exports={
     getProject,
+    insert,
 }
  
