@@ -1,9 +1,9 @@
 // start your server here
-const express=require(`express`)
+// const express=require(`express`)
 
-const server=express()
+const server=require("./api/server")
 
-const port=4444||process.env.PORT
+const port=5555||process.env.PORT
 
 server.listen(port,()=>{
     console.log(`Server started on : ${port} `)
